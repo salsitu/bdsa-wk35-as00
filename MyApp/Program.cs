@@ -4,9 +4,19 @@ namespace MyApp
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Type a year:");
+            string input = Console.ReadLine();
+            
+            if (isLeapYear(int.Parse(input)))
+            {
+                Console.WriteLine("yay");
+            }
+            else
+            {
+                Console.WriteLine("nay");
+            }
         }
 
         public static bool isLeapYear(int year)

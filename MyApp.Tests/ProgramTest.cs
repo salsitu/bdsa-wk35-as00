@@ -39,6 +39,38 @@ namespace MyApp.Tests
         }
 
         [Fact]
+        public void MainNotANumber()
+        {
+            StringReader reader = new StringReader("190d");
+            Console.SetIn(reader);
+            StringWriter writer = new StringWriter();
+            Console.SetOut(writer);
+
+            Program.Main();
+
+            string expected = "You need to enter a number, quitting!";
+            string actual = writer.ToString().Split(Environment.NewLine)[1];
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void MainBelow1582()
+        {
+            StringReader reader = new StringReader("1581");
+            Console.SetIn(reader);
+            StringWriter writer = new StringWriter();
+            Console.SetOut(writer);
+
+            Program.Main();
+
+            string expected = "Cannot handle years below 1582, quitting!";
+            string actual = writer.ToString().Split(Environment.NewLine)[1];
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void isLeapYearTest()
         {
             Assert.True(Program.isLeapYear(2004));
